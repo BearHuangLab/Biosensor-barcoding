@@ -1,0 +1,33 @@
+This folder contains tif files with 7 positions and 10 timepoints subsampled from an experiment. The biosensor-barcode pairs are as follows:
+Barcode	Biosensor 
+B4001	Lyn-FAK
+B0101	Src
+B0402	EKAR
+B0042	RhoA2G
+B2001	EV-S6K
+B0022	EV-ROCK
+B0401	PicchuEV
+B0201	PH-AKT
+B0021	GCaMP6S
+B2002	Syk
+
+To test the pipeline, follow the instructions below. 
+
+0. Download the example files and unzip them. 
+
+1. Follow the published protocol. The script are originally coded to automatically process lsm files. To process the tif files in the example, we have to load "Image Analysis_TIF.ijm" in this folder instead of the original script. This new script changes line 124, 125, and 206 of "2. Barcode identification/Image Analysis.ijm". (3.3.1 step 3)
+
+Specifically, 
+125	OpenFile("405Ex.lsm") --> OpenFile("405Ex.tif") 
+126	OpenFile("633Ex_Linear unmixing.lsm") --> OpenFile("633Ex_Linear unmixing.tif") 
+206	OpenFile("633Ex.lsm") --> OpenFile("633Ex.tif") 
+
+2. Type in 7 positions and 10 timepoints after running "Image Analysis_TIF.ijm" (3.3.1 step 4)
+
+3. Select the ROIs manually, or drag "ToyExample_RoiSet.zip" to FIJI to load a preselected ROI set (3.3.1 step 5-6)
+
+5. When running "2. Barcode identification/Barcode reading GUI/Barcode.py" load the "Barcodelist.txt" in this folder (3.3.1 step 8-9)
+
+6. Note: check if the output of the spectrum data starts with "Montage", otherwise delete the first row containing labels and Mean. This behavior probably has something to do with FIJI settings or versions. (3.3.1 step 10)
+
+7. Fill in all acquired data in the "ToyExampleTemplate.xlsx" process the data. Alternatively, fill in the barcode and biosensor pairs in the "Barcodes excel sheet manually. (3.3.2 step 1)
